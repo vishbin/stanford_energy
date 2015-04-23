@@ -34,8 +34,6 @@ public class SendMailService {
 public static void sendEmail(String subject ,Exception e2, String query){
 	try {
 				
-			//stanfordenergy@gmail.com","energy@123"
-			//TODO externalize read from a prop file
 			String host = "smtp.gmail.com";
 			String from = "";
 			String pass = "";
