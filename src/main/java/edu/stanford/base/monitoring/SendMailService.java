@@ -37,8 +37,8 @@ public static void sendEmail(String subject ,Exception e2, String query){
 			//stanfordenergy@gmail.com","energy@123"
 			//TODO externalize read from a prop file
 			String host = "smtp.gmail.com";
-			String from = "stanfordenergy@gmail.com";
-			String pass = "energy@123";
+			String from = "";
+			String pass = "";
 			Properties props = System.getProperties();
 			props.put("mail.smtp.starttls.enable", "true"); // added this line
 			props.put("mail.smtp.host", host);
