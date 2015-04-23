@@ -1,0 +1,65 @@
+
+
+body { background: #528538 url('body_bg_green.jpg') 0 0 repeat-x; }
+
+    
+#surveyContent .surveyLogo {
+    position: absolute;
+    top: 25px;
+    width: auto;
+    }
+    
+#survey { margin-top: 100px; }
+    
+#surveyContent { 
+    
+    -moz-border-radius: 17px; 
+    -webkit-border-radius: 17px;
+    border-radius: 17px;
+    border: 4px solid #787878;;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+/*    box-shadow: 0 0 15px #7F7F7F;
+    -moz-box-shadow: 0 0 15px #7F7F7F;
+    -webkit-box-shadow: 0 0 15px #7F7F7F;
+*/     padding-top: 20px; 
+    }
+    
+#surveyContent #surveyButtons input.btn {
+    
+    background-color: #49494B;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    }
+    
+#surveyContent .surveyProgressBar .bar .complete { background-color: #49494B; }
+
+#surveyContent .surveyLogo img { behavior: url('/survey/ebay/iepngfix.htc'); }
+
+
+#surveyContent .surveyQuestion .question h3 { 
+    color: #808183;
+    font-size: 20px;
+    font-weight: normal;
+    }
+
+	/* question container */
+	#surveyContent .comment {
+	    font-size: 16px;
+	}
+
+.surveyCompletedText { width: 600px; }
+
+#surveyContent .surveyQuestion .answers table.grid tr.legend td {
+    vertical-align: bottom;
+}
+
+#surveyContent .surveyProgressBar .bar {
+    width: auto;
+}
+
+
+#
+

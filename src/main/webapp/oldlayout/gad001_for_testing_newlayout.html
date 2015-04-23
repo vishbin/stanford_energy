@@ -1,0 +1,879 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!-- This is the original gadget for local testing for all feature. This does not contain the redirection code -->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
+
+<title>Stanford Appliance Calculator</title>
+
+<link rel="stylesheet" type="text/css"	href="themes/sytle-mobile.css"	media="only screen and (max-width: 767px)" />
+<link rel="stylesheet" type="text/css"	href="themes/sytle-newlayout.css" />
+<!-- <link href='http://fonts.googleapis.com/css?family=Lato:100,700,100italic,700italic' rel='stylesheet' type='text/css' /> -->
+
+ <style type="text/css">
+
+        .myAltRowClass { background-color: #DDDDDC; background-image: none; }
+
+        /*.myAltRowClass { background: #DDDDDC; }*/
+
+    </style>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24555840-1']);
+  _gaq.push(['_setDomainName', 'none']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+<!-- Comment this while testing locally  -->
+<!-- Google Website Optimizer Control Script
+<script>
+function utmx_section(){}function utmx(){}
+(function(){var k='3413945852',d=document,l=d.location,c=d.cookie;function f(n){
+if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.indexOf(';',i);return escape(c.substring(i+n.
+length+1,j<0?c.length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;
+d.write('<sc'+'ript src="'+
+'http'+(l.protocol=='https:'?'s://ssl':'://www')+'.google-analytics.com'
++'/siteopt.js?v=1&utmxkey='+k+'&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='
++new Date().valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+'" type="text/javascript" charset="utf-8"></sc'+'ript>')})();
+</script><script>utmx("url",'A/B');</script>
+<!-- End of Google Website Optimizer Control Script 
+<!-- Google Website Optimizer Tracking Script 
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['gwo._setAccount', 'UA-10202617-1']);
+  _gaq.push(['gwo._trackPageview', '/3413945852/test']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- End of Google Website Optimizer Tracking Script -->
+
+
+<link rel="icon" type="image/ico" href="favicon.ico" />
+<link rel="stylesheet" type="text/css" media="screen"	href="themes/smoothness/jquery-ui-1.8.16.custom.css" />
+<link rel="stylesheet" type="text/css" media="screen"	href="jqg/css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" media="screen"	href="jqg/plugins/ui.multiselect.css" />
+<script type="text/javascript" src="jqg/js/jquery-1.5.2.min.js"></script>
+<script src="jqg/js/i18n/grid.locale-en.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$.jgrid.no_legacy_api = true;
+	$.jgrid.useJSON = true;
+</script>
+<script src="jqg/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+<script src="jqg/js/jquery-ui.min.js" type="text/javascript"></script>
+<script src="jqg/js/jquery.ui.position.js" type="text/javascript"></script>
+
+<link type="text/css" href="style.css" rel="stylesheet" />
+
+
+
+<script type="text/javascript">
+	
+	$("#showAllNewDD").live("click", function(event){
+	
+		$("#slider-range").slider("option", "values", [$("#slider-range").slider("option", "min"),$("#slider-range").slider("option", "max")] );
+		
+		$( "#amount" ).html( "<a>Electricity Consumption(Min&Max kWh/yr) : </a> " + $( "#slider-range" ).slider( "values", 0 ) +
+				" - " + $( "#slider-range" ).slider( "values", 1 ) );
+		
+		document.getElementById("priceRangeDD").selectedIndex=0;
+		document.getElementById("brandDD").selectedIndex=0;
+		document.getElementById("refTypeDD").selectedIndex=0;
+		document.getElementById("colorDD").selectedIndex=0;
+		document.getElementById("refVolNewDD").selectedIndex=0;
+		document.getElementById("featureNew1DD").selectedIndex=0;
+		document.getElementById("energyStarNewDD").selectedIndex=0;
+		filterResults('showall');
+		  //showall();     
+		//filterResults();	
+	});
+	
+	
+	
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		//  $.simpledropdown("#dropdown2, #dropdown3");
+	$(window).bind("beforeunload", function(){trackBrowserClose()});
+	});
+
+	
+	</script>
+
+
+
+
+
+
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/subg.js"></script>
+<script type="text/javascript" src="js/stan.js"></script>
+
+<script type="text/javascript" > 
+	
+	$.fx.speeds._default = 10;
+	function hov() {
+		$( "#dialog" ).dialog({
+			autoOpen: false,
+			show: "blind",
+			hide: "explode"
+		});
+
+		$(".ww-bot-img").hover(function(id) {
+			//alert($("#dialog").html);
+			//<img  height="248" width="248" src=this.src>
+			var imgHtml="<img  height=\"400\" width=\"300\" src=\""+this.src +"\">";
+			//alert(this.alt);
+			$("#dialog").html(imgHtml);
+			$( "#dialog" ).dialog( "option", "title", this.alt );
+			//$( "#dialog" ).dialog( "option", "height", 550 );
+			$( "#dialog" ).dialog( "option", "width", 350 );
+			$( "#dialog" ).dialog( "open" );
+			return false;
+		}, function(){
+			$( "#dialog" ).dialog( "close" );
+		});	
+		
+	
+	}
+	
+	
+</script> 
+</head>
+<body onload="trackEntryBrowser();">
+
+
+
+<div style="display: none;" id="visitedsavecompare" ></div>
+<div style="display: none;" id="savecompare" ></div>
+
+
+
+<div id="dialog" title="Basic dialog">
+</div>
+<div id="savecomparedialog" >
+</div>
+
+<div id="savecomparediv" >
+<table id="savetoolbar"></table>
+<div id="saveptoolbar"></div>
+</div>
+
+	<div id="header">
+		<div class="masthead"
+			style="position: absolute; height: 75px; width: 1024px">
+			<a href="gad001_for_testing_newlayout.html"><img
+				src="imgnew/AC_topBanner.jpg"
+				alt="Powerdown Stanford" border="0">
+			</a>
+		</div>
+		<div class="section clearfix">
+
+
+
+
+			<div class="region region-header">
+				<div id="block-block-21" class="block block-block first last odd">
+
+
+					<div class="content">
+						<div id="logout">
+							<p>
+								<a href="contact.html"
+									class="logout">Contact</a><a href="contact.html"
+									class="logout">About Us</a>
+							</p>	
+						</div>
+					</div>
+
+				</div>
+				<!-- /.block -->
+			</div>
+			<!-- /.region -->
+
+		</div>
+	</div>
+
+
+	<div id="header1">
+				<h2>The Appliance Calculator helps you:</h2>
+				<ul>
+				<li>Find out how much your current refrigerator is costing in electricity use.</li>
+				<li>Determine when it makes sense to upgrade.</li>
+				<li>Shop for a new refrigerator based on electricity consumption and other features.</li>
+				</ul>
+				<a>Follow the instructions below—note that your Results will get updated anytime you change a dropdown selection.</a>
+				
+				
+				
+			</div>
+			<div id="header2">
+		<h3>Electricity Saving Refrigerator Calculator</h3>
+				
+			</div>	
+				
+
+		
+	<div id="page-wrap">
+	
+	<!-- ***************************************************************************************************************************************** -->
+		<div id="main-content">
+		
+		
+		
+		
+		<div class="box1">
+		 
+		
+		
+		
+		
+			<div id="headstep">
+				<h2>
+				<span style="text-align:center;font-family: 'Helvetica' , sans-serif;font-style: normal;font-weight: bold;font-size: 21px;line-height:32px;color:#c1272d;">Step 1: </span>
+				Describe Your Current Refrigerator</h2>
+					 
+			</div>
+			
+				<div>
+					<label>Select State : </label> <select id="stateDD"
+						onchange="compute();">
+						<option value="">Please Select</option>
+						<option value="10.79">Alabama</option>
+						<option value="16.42">Alaska</option>
+						<option value="11.12">Arizona</option>
+						<option value="8.82">Arkansas</option>
+						<option value="15.31">California</option>
+						<option value="11.25">Colorado</option>
+						<option value="19.29">Connecticut</option>
+						<option value="13.73">Delaware</option>
+						<option value="13.78">District of Columbia</option>
+						<option value="11.44">Florida</option>
+						<option value="10.3">Georgia</option>
+						<option value="27.85">Hawaii</option>
+						<option value="8">Idaho</option>
+						<option value="11.53">Illinois</option>
+						<option value="9.45">Indiana</option>
+						<option value="10.42">Iowa</option>
+						<option value="9.97">Kansas</option>
+						<option value="8.47">Kentucky</option>
+						<option value="8.93">Louisiana</option>
+						<option value="15.7">Maine</option>
+						<option value="14.7">Maryland</option>
+						<option value="15.23">Massachusetts</option>
+						<option value="12.52">Michigan</option>
+						<option value="10.4">Minnesota</option>
+						<option value="9.93">Mississippi</option>
+						<option value="9.22">Missouri</option>
+						<option value="9.11">Montana</option>
+						<option value="9.03">Nebraska</option>
+						<option value="12.43">Nevada</option>
+						<option value="16.19">New Hampshire</option>
+						<option value="16.66">New Jersey</option>
+						<option value="10.69">New Mexico</option>
+						<option value="18.74">New York</option>
+						<option value="10.25">North Carolina</option>
+						<option value="8.1">North Dakota</option>
+						<option value="11.33">Ohio</option>
+						<option value="9.11">Oklahoma</option>
+						<option value="8.83">Oregon</option>
+						<option value="12.83">Pennsylvania</option>
+						<option value="15.96">Rhode Island</option>
+						<option value="10.47">South Carolina</option>
+						<option value="8.86">South Dakota</option>
+						<option value="9.13">Tennessee</option>
+						<option value="11.63">Texas</option>
+						<option value="8.85">Utah</option>
+						<option value="15.48">Vermont</option>
+						<option value="10.56">Virginia</option>
+						<option value="7.93">Washington</option>
+						<option value="8.69">West Virginia</option>
+						<option value="12.53">Wisconsin</option>
+						<option value="8.73">Wyoming</option>
+
+					</select>
+				</div> 
+				<div>
+					<label> Refrigerator Type:</label> <select id="refAngleDD"
+						onchange="compute();">
+						<option value="">Please Select</option>
+						<option value="Bottom Freezer">Bottom Freezer</option>
+						<option value="Side-by-Side">Side-by-Side</option>
+						<option value="Single Door">Single Door</option>
+						<option value="Top Freezer">Top Freezer</option>
+
+					</select>
+				</div> 
+
+				<div>
+					<label>Approx Model Year:</label> <select id="modelYearDD"
+						onchange="compute();">
+						<option value="">Please Select</option>
+						<option value="Before 1980">Before 1980</option>
+						<option value="1980-1989">1980-1989</option>
+						<option value="1990-1992">1990-1992</option>
+						<option value="1993-1996">1993-1996</option>
+						<option value="1997-2000">1997-2000</option>
+						<option value="2001-2005">2001-2005</option>
+						<option value="2006-2011">2006-2011</option>
+
+
+					</select>
+				</div> 
+				<div>
+					<label>Size:</label> <select id="refVolDD" onchange="compute();">
+						<option value="">Please Select</option>
+						<option value="Below 7.5 cu. ft.">Below 7.5 cu. ft.</option>
+						<option value="7.5-16.4 cu. ft.">7.5-16.4 cu. ft.</option>
+						<option value="16.5-18.9 cu. ft.">16.5-18.9 cu. ft.</option>
+						<option value="19-21.4 cu. ft.">19-21.4 cu. ft.</option>
+						<option value="21.5-24.4 cu. ft.">21.5-24.4 cu. ft.</option>
+						<option value="25.5 cu. ft.">25.5 cu. ft. &amp; More</option>
+
+
+
+					</select>
+				</div> 
+
+
+
+				<div>
+					<label> Icemaker:</label> <select id="feature1DD"
+						onchange="compute();">
+						<option value="">Please Select</option>
+						<option value="without icemaker">without icemaker</option>
+						<option value="with icemaker">with icemaker</option>
+
+					</select>
+				</div> 
+					<div>
+						<label> EnergyStar:</label> <select id="energyStarDD"
+							onchange="compute();">
+							<option value="">Please Select</option>
+							<option value="1">Yes</option>
+							<option value="0">No</option>
+
+						</select>
+					</div> 
+					
+					<div id="sandbox" class="box_shadow box_gradient  box_round  box_bgsize box_padding">
+							<div id="kWhPerYear002">
+
+							Please Select Above Options</div>
+				</div>		
+		
+		
+		 
+		
+		</div>
+
+</div>
+		<!-- ***************************************************************************************************************************************** -->
+		<div id="main-sidebar">
+		
+		
+		<div class="box2">
+		 
+		
+		
+			<div id="headstep2">
+			
+				<h2><span style="text-align:center;font-family: 'Helvetica' , sans-serif;font-style: normal;font-weight: bold;font-size: 21px;line-height:32px;color:#c1272d;">Step 2: </span>
+				Describe Your Desired New Refrigerator</h2>
+				
+					 
+			</div>
+		
+		
+		
+		
+			
+				<div>
+					<label>Price Range</label> <select id="priceRangeDD"
+						onchange="filterResults();">
+						<option value="">Any</option>
+						<option value="399">Below $399</option>
+						<option value="400-649">$400-$649</option>
+						<option value="650-899">$650-$899</option>
+						<option value="900-1199">$900-$1199</option>
+						<option value="1200-1699">$1200-$1699</option>
+						<option value="1700-2199">$1700-$2199</option>
+						<option value="2200-3000">$2200-$3000</option>
+						<option value="3000-4000">$3000-$4000</option>
+						<option value="4000">$4000 and above</option>
+
+					</select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
+						id="showAllNewDD" class="button white">Show All Models</a>
+
+				</div> 
+				<div>
+					<label> Brand:</label> <select id="brandDD"
+						onchange="filterResults();">
+
+						<option value=" ">Any</option>
+						<option value="Amana">Amana</option>
+						<option value="Bosch">Bosch</option>
+						<option value="Electrolux">Electrolux</option>
+						<option value="Frigidaire">Frigidaire</option>
+						<option value="GE">GE</option>
+						<option value="Gladiator">Gladiator</option>
+						<option value="Kenmore">Kenmore</option>
+						<option value="KitchenAid">KitchenAid</option>
+						<option value="LG ">LG</option>
+						<option value="Maytag">Maytag</option>
+						<option value="Samsung">Samsung</option>
+						<option value="Whirlpool">Whirlpool</option>
+
+
+
+					</select>
+
+
+				</div> 
+
+
+				<div>
+					<label> Refrigerator Type:</label> <select id="refTypeDD"
+						onchange="filterResults();">
+						<option value="">Any</option>
+						<option value="Bottom Freezer">Bottom Freezer</option>
+						<option value="Side by Side">Side-by-Side</option>
+						<option value="Top Freezer">Top Freezer</option>
+
+
+					</select>
+
+
+				</div> 
+				<div>
+					<label>Color</label> <select id="colorDD"
+						onchange="filterResults();">
+
+
+						<option value="">Any</option>
+						<option value="Beige">Beige &amp; Bisque</option>
+						<option value="Black">Black</option>
+						<option value="Blue">Blue</option>
+						<option value="Brown">Brown</option>
+						<option value="Green">Green</option>
+						<option value="Orange">Orange</option>
+						<option value="Pink">Pink</option>
+						<option value="Red">Red</option>
+						<option value="Specialty">Specialty</option>
+						<option value="Stainless Steel">Stainless Steel &amp;
+							Metallic</option>
+						<option value="White">White</option>
+
+
+
+
+					</select>
+				</div> 
+				<div>
+					<label>Size:</label> <select id="refVolNewDD"
+						onchange="filterResults();">
+						<option value="">Any</option>
+						<option value="7.5">Below 7.5 cu.ft.</option>
+						<option value="7.5-16.4">7.5-16.4 cu.ft.</option>
+						<option value="16.5-18.9">16.5-18.9 cu.ft.</option>
+						<option value="19-21.4">19-21.4 cu.ft.</option>
+						<option value="21.5-24.4">21.5-24.4 cu.ft.</option>
+						<option value="25.5">25.5 cu.ft. &amp; More</option>
+
+
+
+					</select>
+				</div> 
+
+
+
+				<div>
+					<label> Icemaker:</label> <select id="featureNew1DD"
+						onchange="filterResults();">
+						<option value="">Any</option>
+						<option value="No">without icemaker</option>
+						<option value="Yes">with icemaker</option>
+
+					</select>
+				</div> 
+				<div>
+					<label> EnergyStar:</label> <select id="energyStarNewDD"
+						onchange="filterResults();">
+						<option value="">Any</option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+
+					</select> &nbsp;&nbsp;&nbsp;
+
+
+
+				</div> 
+			<div id="amount">0</div>
+			<div id="slider-range"></div>
+
+
+
+
+			<div>
+				<label id="kWhPerYearNew"></label>
+
+
+			</div>
+
+
+		
+		</div>
+
+
+</div>
+
+
+		<!-- ***************************************************************************************************************************************** -->
+				<p style="display: none;" class="ww-highlevel status-indicator"
+					data-lang="loading">Loading...</p>
+				<div id="footer">
+					<div id="noResultsDiv" style="display:none" > No Search Results Fit Your Criteria </div>
+					<table id="toolbar"></table>
+					<div id="ptoolbar"></div>
+					
+					
+					<div class="region region-footer">
+    <div id="block-block-4" class="block block-block first last odd">
+
+      
+  <div class="content">
+    <p>©2011 Stanford ARPAe </p>  </div>
+
+</div><!-- /.block -->
+  </div>
+					
+					
+									</div>
+									
+			
+
+		<!-- ***************************************************************************************************************************************** -->
+	</div>
+</body>
+
+<script>
+	jQuery.jgrid.fluid = {
+		fluidGrid : function(options) {
+			/* var grid = $('#toolbar');
+			var settings = $.extend({
+				example : grid.closest('.ui-jqgrid').parent(),
+				offset : 0
+			}, options || {});
+
+			var width = $(settings.example).innerWidth() + settings.offset;
+			//alert(width);
+			//alert(grid.toString());
+			//grid.setGridWidth(width);
+			jQuery("#toolbar").jqGrid('setGridWidth', width);
+			// alert(width/80+"px");
+			$("label").css('font-size', width / 10 + "%");
+			//	$("ul").css('width', width/50+"px");
+		//	$("#kWhPerYear002").css('font-size', width / 75 + "px");
+			//$("#kWhPerYear002").css('width', width / 2.8 + "px");
+			//	$("a").css('font-size',width/80+"px");
+			//$("span").css('font-size', width / 80 + "px");
+			$(".ui-jqgrid-sortable").css('font-size', width / 90 + "px");
+
+			//.jqTransformSelectWrapper ul a
+			//	$("a").css('line-height', width/80);
+ */
+		}
+	}
+
+	$.fn.extend({
+		fluidGrid : jQuery.jgrid.fluid.fluidGrid
+	});
+</script>
+
+<script>
+
+function resize_the_grid()
+
+{
+
+  //$('#toolbar').fluidGrid({base:'#ww-bot-footer', offset:-20});
+  
+}
+
+
+
+
+
+
+	var template1 = {
+		"groupOp" : "AND",
+		"rules" : [ {
+			"field" : "b.name",
+			"op" : "bw",
+			"data" : "Client 1"
+		}, {
+			"field" : "a.amount",
+			"op" : "gt",
+			"data" : "20"
+		} ]
+	};
+
+	var template2 = {
+		"groupOp" : "AND",
+		"rules" : [ {
+			"field" : "b.name",
+			"op" : "eq",
+			"data" : "Client 2"
+		}, {
+			"field" : "a.id",
+			"op" : "le",
+			"data" : "10"
+		} ]
+	};
+
+	var compserverurl = window.location + "";
+	//alert(window.location);
+	var servurl = compserverurl.replace("/gad001.html", "");
+	var getdataresturl = window.location.protocol
+			+ "//"
+			+ window.location.host
+			+ (window.location.pathname).substring(0, window.location.pathname
+					.lastIndexOf("/")) + "/rrh/allproducts";
+	//alert(getdataresturl);
+	
+	jQuery("#toolbar").jqGrid(
+			{
+				url : getdataresturl,
+				datatype : "json",
+				colNames : [ 'Productid', ' <a>New Refrigerators<a> ', '<a>Price<a> <img src="images/sort_neutral_green.png"></img>',
+						'<a>Annual<br>Electricity Use<img src="images/sort_neutral_green.png"></img> ', '<a>Lifetime Electricity<br> Cost</a> <img src="images/sort_neutral_green.png"></img>',
+						'<a>Annual Cost<br>Savings for New Vs Old <img src="images/sort_neutral_green.png"></img></a>',
+						'Color',
+						'IceMaker',
+						'EnergyStar',
+						'Size'
+
+				],
+				colModel : [ {
+					name : 'Id',
+					index : 'Id',
+					width : 10,
+					sorttype : 'String',
+					hidden : true
+				}, {
+					name : 'Product',
+					index : 'Product',
+					width : 375,
+					sortable : false,title:false
+				}, {
+					name : 'Price',
+					index : 'Price',
+					width : 100,
+					sorttype : 'int',
+					sortable : true,formatter:'currency',formatoptions:{prefix:"&#36;",thousandsSeparator:",",decimalPlaces: 0}
+				}, {
+					name : 'AnnualEnergyUse',
+					index : 'AnnualEnergyUse',
+					width : 125,
+					sorttype : 'int',
+					sortable : true, formatter:kwhFormatter
+				}, {
+					name : 'AnnualCostSavings',
+					index : 'AnnualCostSavings',
+					width : 160,
+					sorttype : 'int',
+					sortable : true,formatter:'currency',formatoptions:{prefix:"&#36;",thousandsSeparator:",",decimalPlaces: 0}
+				}, {
+					name : 'AnnualCostSavingsforNewVsOld',
+					index : 'AnnualCostSavingsforNewVsOld',
+					width : 200,
+					sorttype : 'int',
+					sortable : true,formatter:'currency',formatoptions:{prefix:"&#36;",thousandsSeparator:",",decimalPlaces: 0}
+				}
+				
+				, {
+					name : 'Color',
+					index : 'Color',
+					width : 200,
+					sortable : true,
+					hidden : true
+				}
+				
+				, {
+					name : 'IceMaker',
+					index : 'IceMaker',
+					width : 200,
+					sortable : true,
+					hidden : true
+				}
+				, {
+					name : 'EnergyStar',
+					index : 'EnergyStar',
+					width : 200,
+					sortable : true,
+					hidden : true
+				}, {
+					name : 'Size',
+					index : 'Size',
+					width : 200,
+					sorttype : 'int',
+					sortable : true,
+					hidden : true
+				}
+
+				],
+				rowNum : 6,
+				rowTotal : 2000,
+				rowList : [ 6,12,24],
+				height : 'auto',
+				altRows : true,
+				 autowidth : true,
+				shrinkToFit : true,
+				loadonce : true,
+				mtype : "GET",
+				rownumbers : false,
+				rownumWidth : 10,
+				gridviaew : true,
+				pager : '#ptoolbar',
+				sortname : 'Price',
+				viewrecords : true,
+				emptyrecords:"No Search Results Fit Your Criteria",
+				sortorder : "asc",
+				multiselect: true,
+				multiselectWidth: 115,
+				multiboxonly: true,
+				caption:"<div class=\"ui-jqgrid-title\">Your New Refrigerator Search Results<div>",
+				gridComplete:function(){
+					
+					 calOldVsNew();
+					 hov();
+					 
+				},
+				loadComplete: function() {
+					//alert("hi");
+					clickToBuySaveData("","AFTER_SORT_NEXT_PAGE_SEARCH_RESULTS");
+					$("INPUT[type='checkbox']").click(function(event){
+					    	   saveForCompare(event);
+					   
+					   
+					       
+					       //alert(event.currentTarget.checked);
+					       //console.log(event);
+
+					       
+					   });
+				 	   //$("INPUT[type='checkbox']").attr("title", "Please check this box to save product for compare");
+				 	   //$("INPUT[type='checkbox']").addClass("vtip");
+				 	// $('input[name*="man"]')
+				 	//alert($("td[aria-describedby='toolbar_cb']"));  
+				 	$("td[aria-describedby='toolbar_cb']").attr("title", "Please check this box to save product for compare");
+				 	  $("td[aria-describedby='toolbar_cb']").addClass("vtip");
+				 	 //$("td[aria-describedby='toolbar_cb']").css('width','175');
+				 	  
+				 	  //alert("in complete");
+					//alert(jQuery("#toolbar").jqGrid('getGridParam').records);
+					//filterResults("inload");
+				       if (jQuery("#toolbar").jqGrid('getGridParam').records==0) {
+				    	 //alert("in No data was found");
+				          //jQuery("#toolbar").jqGrid('addRowData', 1,{"New Refrigerators":"NO DATA FOUND"});
+				         // $("#noResultsDiv").addClass("ui-jqgrid");
+				          
+				          //$("#noResultsDiv").addClass("ui-jqgrid-title");
+				          
+				          //$("#noResultsDiv").show();   
+
+				     }
+				       $("tr.jqgrow:odd").css("background", "#f7f3e9");
+				       
+				}
+				
+			});
+	//$("#t_toolbar").append("<div class=\"ui-jqgrid-title\">Your New Refrigerator Search Results<div>");
+	resize_the_grid();
+	$(window).resize(resize_the_grid);
+	$(".ui-jqgrid-sortable").css('height', 'auto');
+	//$(document).ready(filterResults("inload"));
+	//alert($('#toolbar_cb').html);
+	//window.onload = function () {filterResults("inload"); };
+	//$("#toolbar_cb").append('<a rel="tooltip" id="compareB" title="Please select the products by clicking the checkboxes and then click here to compare checked products " onclick="savecomparegrid()" class="vtip button blue"  href="#">Save <br> Compare</a>');
+	$("#toolbar_cb").append('<a rel="tooltip" id="compareB" title="Please select the products by clicking the checkboxes and then click here to compare checked products " onclick="savecomparegrid()" class="vtip button large white"  href="#" ><span>Save Compare</span></a>');
+	
+	
+	//$("#toolbar_cb").css('width','175px');
+	
+	//alert($("#jqgh_toolbar_cb").text);
+//	$("#jqgh_toolbar_cb").replaceWith('<a rel="tooltip" id="compareB" title="Please select the products by clicking the checkboxes and then click here to compare checked products " onclick="savecomparegrid()" class="vtip button"  href="#">Compare</a>');
+	//$("#toolbar_cb").css('width','175px');
+	//alert($("td[aria-describedby='toolbar_cb']").title);
+	
+	//$("#jqgh_toolbar_Product").css('width','175px');
+	$("#jqgh_toolbar_cb").replaceWith('');
+	//alert($("td[aria-describedby='toolbar_Product']").attr('role'));
+//	$("td[aria-describedby='toolbar_Product']").removeAttr('title');
+	
+	savecomparegrid1();
+	
+	
+	
+	
+	function kwhFormatter(cellvalue, options, rowObject ){
+		return cellvalue+' kWh';
+	}
+	
+</script>
+
+
+		<a href="#" title="Give us feedback" id="feedback-badge-right"><span>Feedback</span></a>
+		<script type="text/javascript" src="js/jquery.feedbackBadge.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('#feedback-badge-right').feedbackBadge({
+			css3Safe: $.browser.safari ? true : false,
+			onClick: function () {
+				window.open("https://docs.google.com/spreadsheet/embeddedform?formkey=dDdDZEROTVpUdmZNUlp2R0RxNjlldkE6MA");	
+			}
+		});
+	});
+</script>
+	
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		/**
+		* Set up feedback box to go to the right
+		*/
+		$('#feedback-badge-right').feedbackBadge({
+			css3Safe: $.browser.safari ? true : false, //this trick prevents old safari browser versions to scroll properly
+			float: 'right' //Add this to float the badge to the right
+			
+		});
+	});
+</script>
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/classes/applicationContext.xml
+		</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>log4j-init</servlet-name>
+		<servlet-class>edu.stanford.base.config.Log4jInit</servlet-class>
+		<init-param>
+			<param-name>log4j-init-file</param-name>
+			<param-value>WEB-INF/classes/log4j.properties</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>rrh</servlet-name>
+		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>
+				 edu.stanford.base.rest.commands
+			</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>rrh</servlet-name>
+		<url-pattern>/rrh/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>GetEnergyData</servlet-name>
+		<servlet-class>edu.stanford.base.rest.commands.GetEnergyData</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetEnergyData</servlet-name>
+		<url-pattern>/GetEnergyData</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>listing</servlet-name>
+		<servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>0</param-value>
+		</init-param>
+		<init-param>
+			<param-name>listings</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>listing</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>gad002.html</welcome-file>
+	</welcome-file-list>
+
+
+	<servlet>
+		<description></description>
+		<display-name>StartupServlet</display-name>
+		<servlet-name>StartupServlet</servlet-name>
+		<servlet-class>edu.stanford.base.rest.commands.StartupServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>StartupServlet</servlet-name>
+		<url-pattern>/StartupServlet</url-pattern>
+	</servlet-mapping>
+
+
+
+
+
+	<filter>
+		<filter-name>MainFilter</filter-name>
+		<filter-class>edu.stanford.base.routing.MainFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>MainFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+
+
+
+
+</web-app>

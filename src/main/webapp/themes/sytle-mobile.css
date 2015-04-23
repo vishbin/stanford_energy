@@ -1,0 +1,6 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body { font-size: 125%; width: 100%; max-width: 100% }
+
+.wrapper, .middle { width: 100% }

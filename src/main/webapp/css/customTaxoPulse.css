@@ -1,0 +1,198 @@
+
+/**
+*
+*	Taxonomy Box
+*		1. Main Container
+*		2. Taxo Category
+*		3. Taxo Actions
+*			3.1	Hide/Show
+*			3.2	Banned
+*
+**/
+.taxoCleanupContainer{
+	background-color:#F6F6F6;
+	border:1px solid #C7CACF;
+	height:74px;
+	overflow:hidden;
+	width:715px;
+	}
+	.taxoCleanupContainer a.taxoItemCategory{
+		float:left;
+		display:block;
+		font-size:12px;
+		font-weight:bold;
+		line-height:28px;
+		margin:0 13px;
+		}
+	.taxoCleanupContainer a.taxoInfo{
+		background:transparent url(0000/content/intl/iconInfo.png) right center no-repeat;
+		float:right;
+		display:block;
+		font-size:12px;
+		font-weight:bold;
+		line-height:28px;
+		margin:0 13px;
+		width:18px;
+		text-indent:-5000px;
+		}
+	.taxo_actions{
+		background:transparent url(0000/content/intl/bgTaxoCleanup.gif) left top repeat-x;
+		height:45px;
+		overflow:hidden;
+		display:none;
+		}
+	.taxoDisplayActions{
+		border-right:1px solid #ECECEC;
+		float:left;
+		padding:13px 12px 11px;
+		overflow:hidden;
+		
+		}
+		.taxoDisplayActions a{
+			display:block;
+			float:left;
+			height:21px;
+			text-indent:-5000px;
+			width:50px;
+			}
+		.taxoDisplayActions .taxoHide{
+			background:transparent url(0000/content/intl/spriteBtnBookmarklet.gif) left bottom no-repeat;
+			margin-right:12px;
+			}
+		.taxoDisplayActions .taxoShow{
+			background:transparent url(0000/content/intl/spriteBtnBookmarklet.gif) -50px bottom no-repeat;
+			}
+	.taxoBlockerActions{
+		border-left:1px solid #FEFEFE;
+		float:left;
+		font-size:11px;
+		line-height:21px;
+		padding:13px 11px 11px;
+		position:relative;
+		width:152px;
+		}
+	.taxoBlockerConfirmationBox{
+		background-color:red;
+		display:none;
+    	height:44px;
+    	left:0;
+    	position:absolute;
+    	top:0;
+    	width:100%;
+		}
+
+/**
+*
+*	Ban section
+*		1. Form
+*		2. Labels
+*		3. Submit
+*
+**/
+.taxoBlockerActions{
+	overflow:hidden;
+	}
+	.taxoBlockerActions form label{
+		color:#EC0000;
+		float:right;
+		margin-right:14px;
+		}
+	.taxoBlockerActions form .taxoBlockerSubmit{
+		background:transparent url(0000/content/intl/spriteBtnBookmarklet.gif) left -40px no-repeat;
+		cursor:default;
+		display:block;
+		float:right;
+		height:21px;
+		text-indent:-5000px;
+		width:70px;
+		}
+		.taxoBlockerActions form .enableSubmit{
+			background-position:left -61px;
+			cursor:pointer;
+			}
+
+/**
+*
+*	Container Overwrites
+*		1. cardContainer/taxonomyObject
+*
+**/
+#cardsHolder div.taxonomyObject,
+#cardsHolder div.taxonomyObject:hover{
+	border:3px solid #CC0000!important;
+    }
+	
+
+
+/**
+*
+*	Container Modals
+*
+**/
+
+#ajaxmodal{
+	background-color:transparent!important;
+	padding:0!important;
+}
+#modalBoxWrapper {
+    position:relative;
+	}
+#modalBoxWrapperBorder {
+	background:#8FC7FC none repeat scroll 0 0;
+	height:186px;
+	opacity:0.3;
+	position:absolute;
+	top:-10px;
+	width:390px;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	-moz-opacity:.30;
+	opacity:.30;
+	-khtml-opacity:0.3;
+	filter:alpha(opacity=30);
+	right:-10px;
+	}
+#modalBoxWrapper .padder {
+	background:#FFFFFF none repeat scroll 0 0;
+	border:1px solid #BDDBF7;
+	color:#666666;
+	font-size:12px;
+	height:112px;
+	margin:10px 0 0 10px;
+	padding:26px;
+	position:relative;
+	width:316px;
+	}
+	#modalBoxWrapper h2{
+		font-size:18px;
+		font-weight:normal;
+		margin-bottom:12px;
+		}
+	#modalBoxWrapper a{
+		background:url(0000/content/intl/spriteBtnBookmarklet.gif) repeat scroll left -20px transparent;
+		bottom:26px;
+		display:block;
+		height:20px;
+		position:absolute;
+		right:26px;
+		text-indent:-5000px;
+		width:70px;
+		}
+		#modalBoxWrapper a.modalBoxLogin{
+			background-position:left top;
+			}
+		#modalBoxWrapper a.modalBoxCancel{
+			background-position:right top;
+			right:108px;
+			width:80px;
+			}
+	#modalBoxWrapper form label{
+		float:left;
+		line-height:18px;
+		margin-bottom:5px;
+		width:70px;
+		}
+	#modalBoxWrapper form input{
+		border:1px solid #999999;
+		}
+
