@@ -45,7 +45,7 @@ public static void sendEmail(String subject ,Exception e2, String query){
 			props.put("mail.smtp.port", "587");
 			props.put("mail.smtp.auth", "true");
 		
-			String[] to = {"vishal.patil@gmail.com"}; // added this line
+			String[] to = {"info@mantissa.com"}; // added this line
 		
 			Session session = Session.getDefaultInstance(props, null);
 			MimeMessage message = new MimeMessage(session);
@@ -62,7 +62,7 @@ public static void sendEmail(String subject ,Exception e2, String query){
 			for( int i=0; i < toAddress.length; i++) { // changed from a while loop
 			    message.addRecipient(Message.RecipientType.TO, toAddress[i]);
 			}
-			message.setSubject(subject +e2.getLocalizedMessage() +"    Error Occured in The Application . Please check the logs");
+			message.setSubject(subject +e2.getLocalizedMessage() +"    Error Occured in The DataCollection Application . Please check the logs");
 			message.setText(query+"\n \n \n \n"+stackTraceToString(e2));
 			Transport transport = session.getTransport("smtp");
 			transport.connect(host, from, pass);
