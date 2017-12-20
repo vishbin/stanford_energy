@@ -2,6 +2,6 @@
 Stanford Appliance Energy Calculator.
 
 
-You can check it out here :http://appliancecalculator.stanford.edu/
+You can check part of it out under :http://appliancecalculator.stanford.edu/
 
 
